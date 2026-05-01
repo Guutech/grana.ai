@@ -1,27 +1,21 @@
 import os
 from dotenv import load_dotenv
+import google.generativeai as genai
 
+# carrega o .env
 load_dotenv()
 
+# pega a variável
 API_KEY = os.getenv("GOOGLE_API_KEY")
 
-USE_AI = False  
+if not API_KEY:
+    raise ValueError("A chave da API não foi encontrada no .env")
 
-if USE_AI:
-    from google import genai
-    client = genai.Client(api_key=API_KEY)
+# configura a IA
+genai.configure(api_key=API_KEY)
 
+model = genai.GenerativeModel("gemini-1.5-flash")
 
 def call_llm(prompt):
-    if USE_AI:
-        try:
-            response = client.models.generate_content(
-                model="gemini-2.0-flash",
-                contents=prompt
-            )
-            return response.text
-        except Exception:
-            return "⚠️ IA indisponível no momento."
-
-    # fallback (sem IA)
-    return "📊 Análise básica: você está gastando mais na categoria principal. Considere revisar esses custos."
+    response = model.generate_content(prompt)
+    return response.text
