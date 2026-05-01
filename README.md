@@ -28,23 +28,23 @@ O fluxo da aplicação segue uma arquitetura organizada em camadas:
 
 ## 🏗️ Arquitetura do Projeto
 
+A estrutura de diretórios foi organizada seguindo princípios de separação de responsabilidades para facilitar a manutenção e escalabilidade:
+```text
+
 grana_ai/
-│
-├── app/ # Interface com usuário (Streamlit)
-├── core/ # Orquestração e fluxo da aplicação
-├── use_cases/ # Casos de uso (lógica de negócio)
-├── domain/ # Regras e cálculos financeiros
-├── data/ # Leitura e validação de dados
-├── config/ # Configurações e integração com IA
-
-
----
+├── app/          # Interface com usuário (Streamlit)
+├── core/         # Orquestração e fluxo da aplicação
+├── use_cases/    # Casos de uso (lógica de negócio)
+├── domain/       # Regras e cálculos financeiros
+├── data/         # Leitura e validação de dados
+└── config/       # Configurações e integração com IA
+```
 
 ## 📊 Formato do CSV
 
 O sistema espera um arquivo com as seguintes colunas:
 
 ```csv
-income,expense,category,date
+renda,despesa,categoria,data
 5000,2000,moradia,2024-01-01
 5000,500,lazer,2024-01-05
